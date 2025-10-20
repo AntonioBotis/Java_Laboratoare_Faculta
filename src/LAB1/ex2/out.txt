@@ -1,0 +1,4 @@
+suma este 27.0
+media artimetica este 4.5
+val max este 8
+val min este 2
