@@ -1,10 +1,47 @@
 package LAB4.ex1;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class MainApp4 {
+
+    public static int DeterminareEchipament(String denumire){
+        String aux=denumire.split(" ")[0];
+
+        if(aux.equals("Imprimanta"))
+            return 0;
+        else if(aux.equals("Copiator"))
+            return 1;
+        else
+            return 2;
+    }
+    public static void CitireEchipamente() throws FileNotFoundException {
+        File fisier =new File("src/LAB4/ex1/in.txt");
+        Scanner sc = new Scanner(fisier);
+
+       while(sc.hasNextLine()){
+           String denumire = sc.next();
+           if(DeterminareEchipament(denumire) == 0){
+               Imprimante i1 = new Imprimante(denumire, sc.nextInt(), sc.nextInt(), Electronice.expunere_magazin.achizitionat, 20, 1200, 500, Imprimante.tip.alb);
+
+
+           }
+
+       }
+
+
+
+    }
+
+    public static void AfisareEchipamente(List<Electronice> arr)
+    {
+        for(Electronice e:arr)
+        System.out.println(e);
+    }
+
     public static void main(String[] args) {
         List<Electronice> lista = new ArrayList<Electronice>();
         Imprimante i1 = new Imprimante("HP LaserJet", 101, 950, Electronice.expunere_magazin.achizitionat, 20, 1200, 500, Imprimante.tip.alb);
@@ -38,6 +75,7 @@ public class MainApp4 {
 
             switch (opt) {
                 case 0:
+                    AfisareEchipamente(lista);
                     break;
                 case 1:
                     System.out.println(lista);
@@ -92,36 +130,8 @@ public class MainApp4 {
                     }
                     break;
                 case 6:
-                    for (Electronice e : lista)
-                    if(e instanceof  Imprimante) {
-                        Imprimante aux=(Imprimante)e;
 
-                    }
-                    }
-                    {
-                        {
-                            System.out.println(e.toString());
-                            System.out.println("selectati care element doriti sa ii schimbati starea 0-"+ lista.size());
-                            int indexElement=sc.nextInt();
-                            System.out.println("in ce stare doriti sa schimbati ? 0-achiztionat, 1-expus, 2-vandut");
-                            int stare=sc.nextInt();
-                            Electronice aux= lista.get(indexElement);
-                            if(stare==0){
-                                aux.zona_mag=Electronice.expunere_magazin.achizitionat;
-                            }
-                            else if(stare==1){
-                                aux.zona_mag=Electronice.expunere_magazin.expus;
 
-                            }
-                            else if(stare==2){
-                                aux.zona_mag=Electronice.expunere_magazin.vandut;
-                            }
-                            lista.set(indexElement, aux);
-                            System.out.println(lista.get(indexElement));
-                            System.out.println("\n\n\n");
-
-                        }
-                    }
                     break;
 
 
